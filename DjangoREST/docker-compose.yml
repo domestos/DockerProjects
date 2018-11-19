@@ -1,0 +1,23 @@
+version: '3'
+volumes:
+  pgdata:
+services:
+  python:
+    #image: python:3.4
+    build:
+      context: .
+      dockerfile: docker/python/Dockerfile
+    volumes:
+      - ./src:/src
+    ports:
+      - 8080:8080
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: varenik
+      POSTGRES_DB: varenik
+      POSTGRES_PASS: varenik
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
