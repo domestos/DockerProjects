@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exex python3 app/manage.py runserver 0.0.0.0:8080
+#exex python3 app/manage.py runserver 0.0.0.0:8080

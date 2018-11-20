@@ -10,7 +10,8 @@ services:
     volumes:
       - ./src:/src
     ports:
-      - 8080:8080
+      - 8888:8888
+    command: "python manage.py runserver 0.0.0.0:8888"
   postgres:
     image: postgres:9.6
     environment:
