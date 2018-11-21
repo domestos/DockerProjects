@@ -5,8 +5,8 @@ USER_ID=$(stat -c "%u" $PWD)
 echo  USER_ID
 # set the python run uid to the user id we just retrieved
 PYTHON_RUN_UID=${PYTHON_RUN_UID:=${USER_ID}}
-PYTHON_RUN_USER=${PYTHON_RUN_USER:=valera.pelenskyi}
-PYTHON_RUN_GROUP=${PYTHON_RUN_GROUP:=valera.pelenskyi}
+PYTHON_RUN_USER=${PYTHON_RUN_USER:=user}
+PYTHON_RUN_GROUP=${PYTHON_RUN_GROUP:=user}
 
 # test to see if the user already exists
 PYTHON_RUN_USER_TEST=$(grep "[a-zA-Z0-9\-\_]*:[a-zA-Z]:${PYTHON_RUN_UID}:" /etc/passwd)
