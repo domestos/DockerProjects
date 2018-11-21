@@ -2,7 +2,7 @@
 
 # check who owns the working directory
 USER_ID=$(stat -c "%u" $PWD)
-
+echo  USER_ID
 # set the python run uid to the user id we just retrieved
 PYTHON_RUN_UID=${PYTHON_RUN_UID:=${USER_ID}}
 PYTHON_RUN_USER=${PYTHON_RUN_USER:=valera.pelenskyi}

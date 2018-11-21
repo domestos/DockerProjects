@@ -1,0 +1,44 @@
+python manage.py shell
+
+from blog.models import *
+
+#Create a new object of class of Post
+p = Post(title="new post", slug="new-slug", body="wen post body" )
+
+#save to databes
+p.save()
+
+#get all attributes of object p
+dir(p)
+
+#create and save a new object of class of Post into database
+p1 = Post.objects.create(title="new post1", slug="new-slug1", body="wen post body1" )
+
+#get all objects of class Post. Post.objects.all()---> returns the special object QuerySet, it like to the list but not so
+Post.objects.all()
+
+# get object where slug=
+post = Post.objects.get(slug="new-slug1")
+
+# get object where slug is insensitive to registers and =
+post = Post.objects.get(slug__iexact="New-slug1")
+
+#filter --> return QuerySet . slug__contains is sensitive to resisters
+post = Post.objects.filter(slug__contains="new")
+
+
+###USE TAG
+django_t = Tag.objects.create(title="django",slug='django')
+
+#get information about all posts
+Post.objects.values()
+
+#get object of Post where slug =
+post = Post.objects.get(slug='new-slug')
+#edit value
+post.slug = 'new-post'
+#set related between instance of classes
+post.tags.add(django_t)
+post.save()
+
+django_t.posts.all()
