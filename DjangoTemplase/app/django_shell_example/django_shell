@@ -42,3 +42,28 @@ post.tags.add(django_t)
 post.save()
 
 django_t.posts.all()
+
+
+
+##FORMS
+from blog.forms import TagForm
+tf = TagForm()
+tf
+# <TagForm bound=False, valid=Unknown, fields=(title;slug)>
+# bound=False --> Indicates whether the input data is empty or not
+# get all attributes
+dir(tf)
+tf.is_bound
+tf.is_valid()
+tf.errors
+
+d ={'title':'', 'slug':''}
+tf=TagForm(d)
+tf.is_bound
+tf.is_valid()
+tf.errors
+tf.cleaned_data
+
+from blog.models import Tag
+t = Tag(title=tf2.cleaned_data['title'], slug=tf2.cleaned_data['slug'])
+t.save()

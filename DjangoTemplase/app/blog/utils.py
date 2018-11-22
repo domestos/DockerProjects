@@ -10,4 +10,4 @@ class OjbectDetailMixin:
         #post = Post.objects.get(slug__iexact=slug)
         obj = get_object_or_404( self.model,slug__iexact=slug)
         #self.model.__name__.lower() - get name of models (Post or Tag) and set lower
-        return render(request, self.template   , context={self.model.__name__.lower():obj})
+        return render(request, self.template, context={self.model.__name__.lower():obj})

@@ -24,7 +24,7 @@ class Post(models.Model):
     # This method __srt__ is used when you need to print some element of an object.
     # method __str__ override the method of string, and you can set the showing format
     def __str__ (self):
-        return '{}'.format(self.title)
+        return self.title
 
 class Tag(models.Model):
     title = models.CharField(max_length=50)
