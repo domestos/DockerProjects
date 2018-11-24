@@ -40,7 +40,7 @@ class TagForm(forms.ModelForm):
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model =Post
+        model = Post
         fields = ['title','slug','body','tags']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
