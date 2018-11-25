@@ -8,7 +8,7 @@ title
 
 {% block content %}
  <h1 class="mb-5">Posts:</h1>
-  {% for post in posts %}
+  {% for post in page_obj.object_list %}
 
     {% include 'blog/inculdes/post_card_template.html'%}
 

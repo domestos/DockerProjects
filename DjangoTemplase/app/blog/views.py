@@ -6,12 +6,42 @@ from django.shortcuts import get_object_or_404
 from .models import *
 from .utils import OjbectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin, ObjectDeleteMixin
 from .forms import TagForm, PostForm
-
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 def posts_list(request):
-    posts = Post.objects.all()
-    return render(request,'blog/index.html', context={'posts':posts})
+    search_query =request.GET.get('search','')
+
+    if search_query:
+        posts=Post.objects.filter(Q(title__icontains=search_query) | Q(body__icontains=search_query))
+    else:
+        posts = Post.objects.all()
+
+    paginator = Paginator(posts, 5)
+    # 1 - is defaulte value if GET object in not exist
+    page_number = request.GET.get('page',1)
+    page = paginator.get_page(page_number)
+    #if exist next page (True or Faulse)
+    is_paginated = page.has_other_pages()
+    if page.has_previous():
+        prev_url ='?page={}'.format(page.previous_page_number())
+    else:
+        prev_url = ''
+
+    if page.has_next():
+        next_url = '?page={}'.format(page.next_page_number())
+    else:
+        next_url = ''
+
+    context = {
+        'page_obj':page,
+        'is_paginated':is_paginated,
+        'next_url': next_url,
+        'prev_url': prev_url
+    }
+
+    return render(request,'blog/index.html', context)
 
 def tags_list(request):
     tags = Tag.objects.all()

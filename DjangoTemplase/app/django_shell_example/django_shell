@@ -67,3 +67,16 @@ tf.cleaned_data
 from blog.models import Tag
 t = Tag(title=tf2.cleaned_data['title'], slug=tf2.cleaned_data['slug'])
 t.save()
+
+
+##Paginator
+from django.core.paginator import Paginator
+from blog.models import Post
+posts = Post.objects.all()
+# list of posts and count of post that will shows
+paginator = Paginator(posts, 2)
+dir(paginator)
+
+page1 = paginator.get_page(1)
+dir(page1)
+page1.number
