@@ -1,0 +1,5 @@
+Django==2.1
+djangorestframework-datatables
+pytz==2018.7
+psycopg2
+psycopg2-binary
