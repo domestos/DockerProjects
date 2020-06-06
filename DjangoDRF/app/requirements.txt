@@ -1,4 +1,4 @@
-Django==2.1
+Django==2.2.13
 djangorestframework-datatables
 pytz==2018.7
 psycopg2
